@@ -1,3 +1,12 @@
+/*
+npm install http-server -g
+also get serverless aws
+npm install
+
+to test, cd to static site test and run 'http-server'
+'serverless deploy' for new functions
+*/
+
 "use strict";
 
 const { google } = require("googleapis");
@@ -66,8 +75,8 @@ module.exports.getAccessToken = async (event) => {
 };
 
 module.exports.getCalendarEvents = async (event) => {
-  const access_token = decodeURIComponent(`${event.pathParameters.access_token}`);
-  oAuth2Client.setCredentials({ access_token });
+  const access_tokenn = decodeURIComponent(`${event.pathParameters.access_token}`);
+  oAuth2Client.setCredentials({ access_tokenn });
   return new Promise((resolve, reject) => {
     calendar.events.list(
       {
