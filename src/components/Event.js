@@ -1,10 +1,9 @@
-var showButton = true;
+import { useState } from "react";
+
 const Event = ({event}) => {
-    showHideDetails = () =>{
-      if (showButton==true){
-        showButton=false;
-      }
-      else showButton=false;
+  const [showHideInfo, setShowHideInfo] = useState(false);
+    showHideDetails = () => {
+      setShowHideInfo(!showHideInfo);
     }
 
     return (
@@ -15,9 +14,9 @@ const Event = ({event}) => {
           <li className="start">{event.startTime}</li>
           <li className="organizer">{event.organizer}</li>
         </ul>
-        {showButton ? <button className="up-details">show details</button> : <button className="down-details">hide details</button>}
+        {showHideInfo==false ? <button onClick={showHideDetails} className="up-details">show details</button> : <button onClick={showHideDetails} className="down-details">hide details</button>}
         <div>
-          {!showButton ? <span>{event.description} </span>:<span></span>}
+          {showHideInfo==true ? <span>{event.description}</span> :null}
         </div>
       </div>
     );

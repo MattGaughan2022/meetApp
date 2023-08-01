@@ -9,7 +9,7 @@ actual details should include
 
 */
 
-import { render } from '@testing-library/react';
+import { fireEvent, screen, render } from '@testing-library/react';
 import Event from '../components/Event';
 import userEvent from '@testing-library/user-event';
 import { getEvents, extractEventDetails } from '../api';
@@ -38,16 +38,18 @@ describe('<Event /> component', () => {
     test('by default, event details should be hidden',()=>{
         expect(EventComponent.queryByText('.show-details')).toBeInTheDocument;
     });
+
     test('when the user clicks "show details" button, SHOW the full list of details of an event', async()=>{
         const user = userEvent.setup();
         const showInfoButton = (EventComponent.queryByRole('up-details'));
         await user.click(showInfoButton);
-        expect(EventComponent.queryByText('show details')).toBeInTheDocument;
+        expect(EventComponent.queryByText(/Have you wondered how/)).toBeInTheDocument;
     });
+    
     test('when the user clicks "hide details" button, HIDE the list of details of an event', async()=>{
         const user = userEvent.setup();
         const showInfoButton = (EventComponent.queryByRole('down-details'));
         await user.click(showInfoButton);
-        expect(EventComponent.queryByText('hide details')).toBeInTheDocument;
+        expect(EventComponent.queryByText(/Have you wondered how/)).not.toBeInTheDocument;
     });
 })

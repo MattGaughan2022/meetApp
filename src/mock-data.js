@@ -1,5 +1,4 @@
-var mockData = [];
-mockData=[
+const mockData=[
     {
     "kind": "calendar#event",
     "etag": "\"3181161784712000\"",
@@ -1787,6 +1786,7 @@ mockData=[
      "useDefault": true
     },
     "eventType": "default"
-   }];
+   }
+];
 
 export default mockData;
