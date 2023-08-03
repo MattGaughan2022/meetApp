@@ -14,18 +14,20 @@ export const extractLocations = (events) => {
   return locations;
 };
 
-export const extractEventDetails = async (event)=>{
-  {
+export const extractEventDetails = async (events)=>{
+    let extractedEvents = events.map((event)=>{
     return {
       id: event.id,
       title: event.summary,
       location: event.location,
       startTime: event.start.dateTime,
       endTime: event.end.dateTime,
-      organizer: event.creator.email,
+      organizer: event.organizer.email,
       description: event.description,
-    };
   };
+  
+});
+return extractedEvents;
 }
 
 /**

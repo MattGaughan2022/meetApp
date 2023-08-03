@@ -1,14 +1,17 @@
 import { useState } from "react";
+import {extractEventDetails } from '../api';
 
 const Event = ({event}) => {
   const [showHideInfo, setShowHideInfo] = useState(false);
     showHideDetails = () => {
       setShowHideInfo(!showHideInfo);
     }
+    // console.log(event);
+    // event = extractEventDetails(event);
 
     return (
       <div>
-      <li id="event-item">{event.title}</li>
+      <li id="event-item">Event: {event.title}</li>
         <ul className="event-info">
           <li className="location">{event.location}</li>
           <li className="start">{event.startTime}</li>

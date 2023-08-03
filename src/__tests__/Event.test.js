@@ -18,17 +18,19 @@ describe('<Event /> component', () => {
     
     let EventComponent;
     let testEvent;
+    let allEvents
     beforeEach( async()=> {
-        const allEvents = await getEvents(); 
-        testEvent = await extractEventDetails(allEvents[0]);
+        allEvents = await getEvents(); 
+        allEvents = await extractEventDetails(allEvents);
         EventComponent=render(
         <Event 
-            event={testEvent}
-        />)
+            event={allEvents[0]}
+        />);
     });
 
-    test('renders event location', async()=> {
-        expect(EventComponent.queryByText(testEvent.location)).toBeInTheDocument();
+    test('renders event location', ()=> {
+        console.log(allEvents[0].location);
+        expect(EventComponent.queryByText(allEvents[0].location)).toBeInTheDocument();
     });
     
     test('renders event details button with the title', ()=> {
@@ -45,7 +47,7 @@ describe('<Event /> component', () => {
         await user.click(showInfoButton);
         expect(EventComponent.queryByText(/Have you wondered how/)).toBeInTheDocument;
     });
-    
+
     test('when the user clicks "hide details" button, HIDE the list of details of an event', async()=>{
         const user = userEvent.setup();
         const showInfoButton = (EventComponent.queryByRole('down-details'));

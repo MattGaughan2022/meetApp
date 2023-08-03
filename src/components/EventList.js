@@ -1,5 +1,5 @@
 import Event from './Event';
-const EventList = ({events }) => {
+const EventList = ({events}) => {
     return (
     <div>
       <ul id="event-list">

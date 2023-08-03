@@ -37,7 +37,7 @@ const mockData=[
      "useDefault": true
     },
     "eventType": "default"
-   },
+},
    {
     "kind": "calendar#event",
     "etag": "\"3181159875584000\"",
@@ -76,7 +76,9 @@ const mockData=[
      "useDefault": true
     },
     "eventType": "default"
-   },
+   }];
+   var otherData = 
+   [
    {
     "kind": "calendar#event",
     "etag": "\"3181161784712000\"",
