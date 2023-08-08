@@ -64,6 +64,8 @@ provider:
 #    - include-me.js
 #    - include-me-dir/**
 
+# serverless info or deploy for displaying or launching new functions in auth-serverfolder
+
 functions:
   getAuthURL:
     handler: handler.getAuthURL

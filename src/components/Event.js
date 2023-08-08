@@ -3,7 +3,7 @@ import {extractEventDetails } from '../api';
 
 const Event = ({event}) => {
   const [showHideInfo, setShowHideInfo] = useState(false);
-    showHideDetails = () => {
+    const showHideDetails = () => {
       setShowHideInfo(!showHideInfo);
     }
     // console.log(event);
@@ -13,9 +13,9 @@ const Event = ({event}) => {
       <div>
       <li id="event-item">Event: {event.title}</li>
         <ul className="event-info">
-          <li className="location">{event.location}</li>
-          <li className="start">{event.startTime}</li>
-          <li className="organizer">{event.organizer}</li>
+          <span className="location">{event.location}</span>
+          <span className="start">{event.startTime}</span>
+          <span className="organizer">{event.organizer}</span>
         </ul>
         {showHideInfo==false ? <button onClick={showHideDetails} className="up-details">show details</button> : <button onClick={showHideDetails} className="down-details">hide details</button>}
         <div>

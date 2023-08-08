@@ -76,9 +76,7 @@ const mockData=[
      "useDefault": true
     },
     "eventType": "default"
-   }];
-   var otherData = 
-   [
+   },
    {
     "kind": "calendar#event",
     "etag": "\"3181161784712000\"",
