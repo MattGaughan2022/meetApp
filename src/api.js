@@ -59,20 +59,20 @@ const getToken = async (code) => {
   return access_token;
 };
 
-// const removeQuery = () => { //removes query from URL and sets it to default URL
-//   let newurl;
-//   if (window.history.pushState && window.location.pathname) {
-//     newurl =
-//       window.location.protocol +
-//       "//" +
-//       window.location.host +
-//       window.location.pathname;
-//     window.history.pushState("", "", newurl);
-//   } else {
-//     newurl = window.location.protocol + "//" + window.location.host;
-//     window.history.pushState("", "", newurl);
-//   }
-// };
+const removeQuery = () => { //removes query from URL and sets it to default URL
+  let newurl;
+  if (window.history.pushState && window.location.pathname) {
+    newurl =
+      window.location.protocol +
+      "//" +
+      window.location.host +
+      window.location.pathname;
+    window.history.pushState("", "", newurl);
+  } else {
+    newurl = window.location.protocol + "//" + window.location.host;
+    window.history.pushState("", "", newurl);
+  }
+};
 
 const checkToken = async (accessToken) => {
   const response = await fetch(
@@ -89,7 +89,7 @@ export const getEvents = async () => {
 
   const token = await getAccessToken();
   if(token){
-    // removeQuery();
+    removeQuery();
     const url= 'https://51h9tozzkj.execute-api.us-east-1.amazonaws.com/dev/api/get-events' + '/' + token;
     const response = await fetch(url);
     const result = await response.json();
