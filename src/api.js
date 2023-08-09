@@ -17,15 +17,17 @@ export const extractLocations = (events) => {
 export const getAccessToken = async () =>{
   const accessToken = localStorage.getItem('access_token');
   const tokenCheck = accessToken && (await checkToken(accessToken));
-  if (!accessToken || tokenCheck.error){
-    await localStorage.removeItem('access_Token');
+  if (!accessToken || tokenCheck.error) {
+    await localStorage.removeItem("access_token");
     const searchParams = new URLSearchParams(window.location.search);
-    const code = await searchParams.get('code');
-    if (!code){
-      const response = await fetch('https://51h9tozzkj.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url');
+    const code = await searchParams.get("code");
+    if (!code) {
+      const response = await fetch(
+        "https://51h9tozzkj.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url"
+      );
       const result = await response.json();
-      const {authURL} = result;
-      return (window.location.href = authURL);
+      const { authUrl } = result;
+      return (window.location.href = authUrl);
     }
     return code && getToken(code);
   }
@@ -59,7 +61,9 @@ const getToken = async (code) => {
   return access_token;
 };
 
-const removeQuery = () => { //removes query from URL and sets it to default URL
+ //removes query from URL and sets it to default URL
+
+ const removeQuery = () => {
   let newurl;
   if (window.history.pushState && window.location.pathname) {
     newurl =
@@ -83,18 +87,19 @@ const checkToken = async (accessToken) => {
 };
 
 export const getEvents = async () => {
-  if (window.location.href.startsWith('http://localhost')){
+  if (window.location.href.startsWith('http://localhost')) {
     return mockData;
   }
 
   const token = await getAccessToken();
-  if(token){
+
+  if (token) {
     removeQuery();
-    const url= 'https://51h9tozzkj.execute-api.us-east-1.amazonaws.com/dev/api/get-events' + '/' + token;
+    const url =  "https://51h9tozzkj.execute-api.us-east-1.amazonaws.com/dev/api/get-events" + "/" + token;
     const response = await fetch(url);
     const result = await response.json();
-    if(result){
+    if (result) {
       return result.events;
-    }else return null;
+    } else return null; 
   }
 };
