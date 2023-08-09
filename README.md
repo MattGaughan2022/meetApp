@@ -19,3 +19,6 @@ As a user, I should be able to see charts with event details to show certain inf
 Serverless functions allow for easy integration and deployment of smaller app functions, as well as offloading the need for a custom server just to perform simple tasks that other companies sell the server space for.
 
 This app will utilize a map function from a cloud host to display locations of events, or the area around a user-searched city. This map can be toggled by the user to have more room for viewing lists of events.
+
+
+![image](https://github.com/MattGaughan2022/meetApp/assets/80429635/0d73c736-0b67-4133-894a-9349baf711f8)
