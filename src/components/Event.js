@@ -14,6 +14,7 @@ const Event = ({event}) => {
         <ul className="event-info">
           <span className="location">{event.location}</span><br></br>
           <span className="start">{event.startTime}</span><br></br>
+          {/* <span className="end">{event.endTime}</span><br></br> */}
           <span className="organizer">{event.organizer}</span>
         </ul>
         {showHideInfo===false ? <button onClick={showHideDetails} className="up-details">show details</button> : <button onClick={showHideDetails} className="down-details">hide details</button>}

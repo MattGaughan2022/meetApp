@@ -13,7 +13,7 @@ describe('<App /> component', () => {
     let NumberOfEventsComponent;
     test('NumberOfEventsComponent render', () =>{
       NumberOfEventsComponent = render(<NumberOfEvents/>);
-      expect(NumberOfEventsComponent.container.firstChild).toHaveAttribute('id','start');
+      expect(NumberOfEventsComponent.container.firstChild).toHaveAttribute('id','number-of-events');
     });
     test('renders list of events', () => {
         expect(AppDOM.querySelector('#event-list')).toBeInTheDocument();
@@ -44,5 +44,18 @@ describe('<App /> integration scope', () => {
       event => event.location === 'Berlin, Germany'
     );
     expect(allRenderedEventItems.length).toBe(berlinEvents.length);
+  });
+  test('number inputted by a user equals number rendered', async () => {
+    const user = userEvent.setup();
+    const AppComponent = render(<App />);
+    const AppDOM = AppComponent.container.firstChild;
+
+    const NumberOfEventsDOM = AppDOM.querySelector('#number-of-events');
+    const NumberOfEventsInput = within(NumberOfEventsDOM).queryByRole('textbox');
+    await user.type(NumberOfEventsInput, "{backspace}{backspace}10");
+
+    const EventListDOM = AppDOM.querySelector('#event-list');
+    const allRenderedEventItems = within(EventListDOM).queryAllByRole('listitem');
+    expect(allRenderedEventItems.length).toBe(10);
   });
 });

@@ -40,8 +40,8 @@ export const extractEventDetails = async (events)=>{
       id: event.id,
       title: event.summary,
       location: event.location,
-      startTime: event.start.dateTime,
-      endTime: event.end.dateTime,
+      startTime: event.start.dateTime.slice(0, 10),
+      endTime: event.end.dateTime.slice(0, 10),
       organizer: event.organizer.email,
       description: event.description,
   };
