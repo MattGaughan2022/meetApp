@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 let NumberOfEventsComponent;
 describe('<NumberOfEvents /> component', () =>{
     beforeEach(()=>{
-        NumberOfEventsComponent = render(<NumberOfEvents />);
+        NumberOfEventsComponent = render(<NumberOfEvents setCurrentNOE={()=>{ }}/>);
     })
 
     test('test for role of "textbox" ', () =>{

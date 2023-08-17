@@ -1,4 +1,5 @@
 import puppeteer from 'puppeteer';
+//must be running server 'npm run start' to run this test
 
 describe('show/hide an event details', () => {
   let browser;
