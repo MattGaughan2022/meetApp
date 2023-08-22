@@ -2,7 +2,7 @@ import EventList from './components/EventList';
 import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
 import './App.css';
-import { InfoAlert, ErrorAlert } from './components/Alert'
+import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alert'
 import { useState, useEffect } from 'react';
 import { getEvents, extractEventDetails, extractLocations } from './api';
 
@@ -14,6 +14,7 @@ const App = ()=> {
   const [currentNumber, setCurrentNumber] = useState("");
   const [infoAlert, setInfoAlert] = useState("");
   const [errorAlert, setErrorAlert] = useState("");
+  const [warningAlert, setWarningAlert] = useState("");
 
   const fetchData = async() =>{
     var allEvents = await getEvents();
@@ -27,6 +28,11 @@ const App = ()=> {
   }
 
   useEffect(() => {
+    if (navigator.onLine) {
+      setWarningAlert("");
+    } else {
+      setWarningAlert("You device is not connected to the internet. Showing events from most recent search...");
+    }
     fetchData();
   }, [currentCity, currentNOE]);
   
@@ -35,6 +41,7 @@ const App = ()=> {
       <div className="alerts-container">
         {infoAlert.length ? <InfoAlert text={infoAlert}/> : null}
         {errorAlert.length ? <ErrorAlert text={errorAlert}/> : null}
+        {warningAlert.length ? <WarningAlert text={warningAlert}/> : null}
       </div>
       <CitySearch 
         setInfoAlert={setInfoAlert} 
