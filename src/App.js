@@ -29,9 +29,11 @@ const App = ()=> {
 
   useEffect(() => {
     if (navigator.onLine) {
-      setWarningAlert("");
+      let warningText = "";
+      setWarningAlert(warningText);
     } else {
-      setWarningAlert("You device is not connected to the internet. Showing events from most recent search...");
+      let warningText = "You device is not connected to the internet. Showing events from most recent search...";
+      setWarningAlert(warningText);
     }
     fetchData();
   }, [currentCity, currentNOE]);
